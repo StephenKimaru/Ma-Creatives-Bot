@@ -1,0 +1,14 @@
+{
+  "name": "ma-bot",
+  "version": "1.0.0",
+  "description": "Ma Creatives Telegram Community Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Stephen Kimaru",
+  "license": "MIT",
+  "dependencies": {
+    "telegraf": "^4.12.2"
+  }
+}
