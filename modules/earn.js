@@ -1,20 +1,38 @@
+const earningProjects = [
+  {
+    name: "🔥 Sweatcoin",
+    link: "https://w2.swcapp.com/i/macreatives"
+  },
+  {
+    name: "⚡ MEC App",
+    link: "https://i.mec.me/?c=xu6us1z1"
+  },
+  {
+    name: "🟣 Pi Network",
+    link: "https://minepi.com/macreatives",
+    extra: "Code: macreatives"
+  }
+];
+
 export default (ctx) => {
 
-  ctx.reply(
-`💰 Start Earning Today
+  let message = "💰 Start Earning Today\n\n";
 
-🔥 Sweatcoin
-https://w2.swcapp.com/i/macreatives
+  earningProjects.forEach(project => {
 
-⚡ MEC App
-https://i.mec.me/?c=xu6us1z1
+    message += `${project.name}\n`;
+    message += `${project.link}\n`;
 
-🟣 Pi Network
-https://minepi.com/macreatives
+    if (project.extra) {
+      message += `${project.extra}\n`;
+    }
 
-Code: macreatives
+    message += "\n";
 
-Stay consistent.
-Small steps = big results 🚀`
-  );
+  });
+
+  message += "Stay consistent.\nSmall steps = big results 🚀";
+
+  ctx.reply(message);
+
 };
