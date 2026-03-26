@@ -1,15 +1,36 @@
 {
   "name": "ma-creatives-bot",
-  "version": "1.0.0",
-  "description": "Ma Creatives Telegram Bot",
+  "version": "1.1.0",
+  "description": "Ma Creatives Telegram Automation & Community Bot",
   "main": "index.js",
   "type": "module",
+
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "restart": "npm run start"
   },
+
+  "keywords": [
+    "telegram",
+    "bot",
+    "automation",
+    "ma-creatives",
+    "community",
+    "earning",
+    "learning"
+  ],
+
+  "author": "Ma Creatives Studio",
+  "license": "MIT",
+
   "dependencies": {
     "dotenv": "^16.4.5",
     "node-cron": "^3.0.3",
     "telegraf": "^4.16.3"
+  },
+
+  "engines": {
+    "node": ">=18"
   }
 }
