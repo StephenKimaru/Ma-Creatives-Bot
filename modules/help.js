@@ -1,16 +1,16 @@
-export default function help(bot) {
+export function setupHelp(bot) {
   bot.command("help", (ctx) => {
-    ctx.reply(
-      `🤖 Ma Creatives Bot Help
+    ctx.reply(`
+🆘 Help & Commands
 
-Commands:
+/start — Start the bot
+/help — Show help menu
+/earn — Start earning resources
+/learn — Learning platforms
+/projects — View projects
+/links — Join communities
 
-/help - Show help
-/start - Start bot
-/rules - Group rules
-
-Need assistance?
-Contact admin.`
-    );
+Stay consistent. Small steps = big results 🚀
+    `);
   });
 }
