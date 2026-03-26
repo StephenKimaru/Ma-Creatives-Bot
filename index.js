@@ -30,6 +30,13 @@ bot.action('main_menu', (ctx) => {
   ctx.reply("🏠 Back to main menu", mainMenu())
 })
 
+if (!process.env.BOT_TOKEN) {
+  throw new Error("BOT_TOKEN is missing. Set it in environment variables.")
+}
+
+bot.catch((err) => {
+  console.error("Bot error:", err)
+})
 // Launch bot
 bot.launch()
 
