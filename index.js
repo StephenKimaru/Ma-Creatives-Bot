@@ -1,52 +1,36 @@
-// index.js
-require('dotenv').config()   // Only needed for local .env testing
-const { Telegraf } = require('telegraf')
+import dotenv from "dotenv";
+import { Telegraf } from "telegraf";
 
-// --- Check for BOT_TOKEN before doing anything ---
-const BOT_TOKEN = process.env.BOT_TOKEN
-if (!BOT_TOKEN) {
-  throw new Error(
-    "❌ BOT_TOKEN is missing. Set it in your .env file (local) or Railway environment variables (production)."
-  )
-}
+import { setupWelcome } from "./modules/welcome.js";
+import { setupModeration } from "./modules/moderation.js";
+import { setupHelp } from "./modules/help.js";
+import { setupPosts } from "./modules/posts.js";
+import { setupPromotions } from "./modules/promotions.js";
+import earn from "./modules/earn.js";
+import learn from "./modules/learn.js";
 
-// --- Create bot instance ---
-const bot = new Telegraf(BOT_TOKEN)
+import { mainMenu } from "./utils/links.js";
 
-// --- Import commands ---
-const startCommand = require('./commands/start')
-const projectsCommand = require('./commands/projects')
-const helpCommand = require('./commands/help')
+dotenv.config();
 
-// --- Import keyboard utils ---
-const { mainMenu } = require('./utils/keyboard')
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
-// --- Register commands ---
-bot.start(startCommand)
-bot.command('projects', projectsCommand)
-bot.command('help', helpCommand)
+bot.start((ctx) => {
+  ctx.reply(
+    "Welcome to Ma Creatives Bot 🚀",
+    mainMenu
+  );
+});
 
-// --- Button Actions ---
-bot.action('projects', (ctx) => {
-  ctx.answerCbQuery()
-  projectsCommand(ctx)
-})
+bot.action("earn", earn);
+bot.action("learn", learn);
 
-bot.action('help', (ctx) => {
-  ctx.answerCbQuery()
-  helpCommand(ctx)
-})
+setupWelcome(bot);
+setupModeration(bot);
+setupHelp(bot);
+setupPosts(bot);
+setupPromotions(bot);
 
-bot.action('main_menu', (ctx) => {
-  ctx.answerCbQuery()
-  ctx.reply("🏠 Back to main menu", mainMenu())
-})
+bot.launch();
 
-// --- Global error handler ---
-bot.catch((err) => {
-  console.error("💥 Bot error:", err)
-})
-
-// --- Launch bot ---
-bot.launch()
-console.log("🤖 Ma Creatives Bot is running...")
+console.log("Bot running...");
